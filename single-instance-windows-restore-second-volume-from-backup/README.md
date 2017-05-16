@@ -1,5 +1,8 @@
 ## BMC Windows VM Creation and Block Device Attach Example ##
 
++ You must be familiar with example single-instance-windows to use this example. It is almost same as example single-instance-windows, except the attached block device is restored from an existing backup. Please provide the backup OCID to `block.tf`.
+	- Timeout added, otherwise restoration progress raises exception. Restoring is much more slower than creating.
+
 + Why the process is like this? Why not just user_data?
 	- BMC provided Windows image does not comes with cloud-init or opc-init packages(at least currently we don't), user_data you assigned at instance launching will be ignored. (Just for Windows, not Linux).
 	- So, for Terraform, we have to use remote execute provisoner to do it. (Of course Chef or other management tools are also feasible)
@@ -37,3 +40,4 @@
 + run `terraform apply`. Toubleshoot if needed.
 
 + run `terrform destroy` to bring destruction to the infra yout just created.
+
