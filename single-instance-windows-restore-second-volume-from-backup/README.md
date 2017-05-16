@@ -2,6 +2,7 @@
 
 + You must be familiar with example single-instance-windows to use this example. It is almost same as example single-instance-windows, except the attached block device is restored from an existing backup. Please provide the backup OCID to `block.tf`.
 	- Timeout added, otherwise restoration progress raises exception. Restoring is much more slower than creating.
+	- If volume creation still run into error with timeout in place, just run `terraform apply` twice!
 
 + Why the process is like this? Why not just user_data?
 	- BMC provided Windows image does not comes with cloud-init or opc-init packages(at least currently we don't), user_data you assigned at instance launching will be ignored. (Just for Windows, not Linux).
